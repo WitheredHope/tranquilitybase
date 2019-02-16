@@ -1,18 +1,28 @@
 import React, { Component } from "react";
-class nickname extends Component {
-  state = { value: "" };
-  handleSubmit = () => {
-    alert("A name was submitted: " + this.state.value);
+class nickname extends React.Component {
+  constructor(props) {
+    super(props);
+    this.state = { value: "" };
+  }
+
+  handleChange = event => {
+    this.setState({ value: event.target.value });
   };
-  handleChange = () => {
-    this.setState({ value: "" });
+
+  handleSubmit = event => {
+    if (this.state.value === "") {
+      alert("NO NAME");
+    } else {
+      alert("A name was submitted: " + this.state.value);
+    }
+    event.preventDefault();
   };
 
   render() {
     return (
       <form onSubmit={this.handleSubmit}>
         <label>
-          Enter Nickname:
+          Name:
           <input
             type="text"
             value={this.state.value}
